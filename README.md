@@ -1,7 +1,7 @@
 # ADOTA+ : Plataforma Unificada de Gestão de Adoção Pet 🐾
 
 **Autor:** Pablo Pellizzari Bisollo  
-**Projeto:** Prática Extensionista IV 
+**Projeto:** Prática Extensionista III
 
 ---
 
