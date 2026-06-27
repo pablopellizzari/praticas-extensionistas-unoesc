@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "node": "^25.9.0",
+    "postgres": "^3.4.9"
+  },
+  "type": "module"
+}
