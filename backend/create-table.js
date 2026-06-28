@@ -1,12 +1,14 @@
 // create-tables.js
-import { sql } from "./db.js";
+import sql from "./db.js";
+import '@neondatabase/serverless'
+
 
 async function createTables() {
   try {
     console.log("⏳ Iniciando a criação das tabelas do Adota+...");
 
     await sql`
-      CREATE TABLE ONG (
+      CREATE TABLE IF NOT EXISTS ONG (
           ONG_CODIGO SERIAL PRIMARY KEY,
           ONG_NOME VARCHAR(255) NOT NULL,
           ONG_CNPJ VARCHAR(18) UNIQUE NOT NULL,
@@ -16,9 +18,10 @@ async function createTables() {
           ONG_TELEFONE VARCHAR(20),
           ONG_ENDERECO VARCHAR(255) NOT NULL,
           ONG_SENHA VARCHAR(255) NOT NULL
-      );
+      )`;
 
-      CREATE TABLE USUARIO (
+    await sql`
+      CREATE TABLE IF NOT EXISTS USUARIO (
           USUARIO_CODIGO SERIAL PRIMARY KEY,
           USUARIO_TIPO VARCHAR(255) NOT NULL,
           USUARIO_NOME VARCHAR(255) NOT NULL,
@@ -31,9 +34,10 @@ async function createTables() {
           USUARIO_CELULAR VARCHAR(20) NOT NULL,
           USUARIO_TELEFONE VARCHAR(20),
           USUARIO_ENDERECO VARCHAR(255) NOT NULL
-      );
+      )`;
 
-      CREATE TABLE PET (
+    await sql`
+      CREATE TABLE IF NOT EXISTS PET (
           PET_CODIGO SERIAL PRIMARY KEY,
           PET_NOME VARCHAR(255) NOT NULL,
           PET_RACA VARCHAR(255),
@@ -45,9 +49,10 @@ async function createTables() {
           PET_PORTE VARCHAR(255),
           PET_STATUS VARCHAR(50) NOT NULL,
           CONSTRAINT fk_pet_ong FOREIGN KEY (ONG_CODIGO) REFERENCES ONG (ONG_CODIGO) ON DELETE RESTRICT ON UPDATE CASCADE
-      );
+      )`;
 
-      CREATE TABLE ADOCAO (
+    await sql`
+      CREATE TABLE IF NOT EXISTS ADOCAO (
           ADOCAO_CODIGO SERIAL PRIMARY KEY,
           ADOCAO_STATUS VARCHAR(40) NOT NULL,
           USUARIO_CODIGO INT NOT NULL,
@@ -56,8 +61,7 @@ async function createTables() {
           ADOCAO_DATAF TIMESTAMP,
           CONSTRAINT fk_adocao_usuario FOREIGN KEY (USUARIO_CODIGO) REFERENCES USUARIO (USUARIO_CODIGO) ON DELETE RESTRICT ON UPDATE CASCADE,
           CONSTRAINT fk_adocao_pet FOREIGN KEY (PET_CODIGO) REFERENCES PET (PET_CODIGO) ON DELETE RESTRICT ON UPDATE CASCADE
-      );
-    `;
+      )`;
 
     console.log("Todas as tabelas foram criadas com sucesso!");
     
