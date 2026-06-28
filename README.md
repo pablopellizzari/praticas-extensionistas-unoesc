@@ -26,7 +26,7 @@ Gestão de ONGs. Adoção de Animais. Plataforma Unificada. Protótipo Figma. In
 ---
 
 ### 💻 Tecnologias e Ferramentas Empregadas
-* **Linguagens e Frameworks:** JavaScript, Node.js, React, Python
-* **Banco de Dados:** PostgreSQL 
+* **Linguagens e Frameworks:** JavaScript, Node.js, React(Vite), Tailwind, Axios
+* **Banco de Dados:** Neon PostgreSQL
 * **Arquitetura Visual e Modelagem:** Visual Paradigm (DER, Diagramas de Classe, Casos de Uso)
 * **UI/UX:** Figma (Prototipação de Alta Fidelidade)
